@@ -3,8 +3,6 @@ import numpy as np
 from tqdm import tqdm
 import warnings
 
-# Defining the wavefunction for the Quantum Harmonic Oscillator
-
 def QHO_GS1D(x, alpha=1):
     """
     Ground state wavefunction of the 1D Quantum Harmonic Oscillator.

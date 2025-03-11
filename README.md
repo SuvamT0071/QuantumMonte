@@ -151,7 +151,7 @@ plt.show()
 ---
 
 ## This was made by:
-- **Suvam Tripathy, A MSc Physics student at IIT Madras as a part of a mini project.**
+- **Suvam Tripathy, A MSc Physics student at IIT Madras as a part of a mini project. (2023-2025)**
 
 ---
 

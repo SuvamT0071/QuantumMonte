@@ -140,19 +140,11 @@ plt.show()
 
 ---
 
-## Contributors
-- **[Your Name]** — Primary Developer
-- Special thanks to the creators of **numpy**, **tqdm**, and **matplotlib** for their powerful libraries.
+## This was made by:
+- **Suvam Tripathy, A MSc Physics student at IIT Madras as a part of a mini project.**
 
 ---
 
 ## License
 This project is licensed under the MIT License. Feel free to use, modify, and distribute the code.
-
----
-
-## Future Improvements
-🔹 Implement multi-dimensional VMC for helium or larger atoms.  
-🔹 Add visualization tools for energy convergence.  
-🔹 Improve sampling efficiency for better accuracy.
 

@@ -96,29 +96,31 @@ jupyter notebook "QMC QHO.ipynb"
 
 ---
 
-Mathematical Background
+## Mathematical Background
 
-Choosing a Trial Wavefunction
+**Choosing a Trial Wavefunction**
 
 In the Variational Monte Carlo method, we approximate the ground state wavefunction with a trial function containing a free parameter (alpha). For accurate energy estimation, the chosen trial function should capture key properties of the system such as symmetry, boundary conditions, and decay behavior.
 
-For example:
+**For example:**
 
-Hydrogen Atom Trial Function: Ψ(r) = α r e^(-α r)
+**Hydrogen Atom Trial Function:** Ψ(r) = α r e^(-α r)
 
-Quantum Harmonic Oscillator Trial Function: Ψ(x) = α^(1/2) / π^(1/4) e^(-α^2 x^2 / 2)
+**Quantum Harmonic Oscillator Trial Function:** Ψ(x) = α^(1/2) / π^(1/4) e^(-α^2 x^2 / 2)
 
-Local Energy Calculation
+**Local Energy Calculation**
 
 The local energy is defined as:
 
 E_local(r) = (HΨ(r)) / Ψ(r)
 
-Where H is the Hamiltonian operator. For the hydrogen atom:
+Where H is the Hamiltonian operator. 
+
+**For the hydrogen atom:**
 
 E_local(r) = -1/r - (α/2) * (α - (2/r))
 
-For the Quantum Harmonic Oscillator:
+**For the Quantum Harmonic Oscillator:**
 
 E_local(x) = α^2 + x^2(1 - α^4)
 

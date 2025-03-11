@@ -96,29 +96,33 @@ jupyter notebook "QMC QHO.ipynb"
 
 ---
 
-## Mathematical Background
-### Choosing a Trial Wavefunction
-In the Variational Monte Carlo method, we approximate the ground state wavefunction with a trial function containing a free parameter (alpha). For accurate energy estimation, the chosen trial function should capture key properties of the system such as symmetry, boundary conditions, and decay behavior. 
+Mathematical Background
+
+Choosing a Trial Wavefunction
+
+In the Variational Monte Carlo method, we approximate the ground state wavefunction with a trial function containing a free parameter (alpha). For accurate energy estimation, the chosen trial function should capture key properties of the system such as symmetry, boundary conditions, and decay behavior.
 
 For example:
-- Hydrogen Atom Trial Function: \( \, \Psi(r) = \alpha r e^{-\alpha r} \)
-- Quantum Harmonic Oscillator Trial Function: \( \, \Psi(x) = \frac{\alpha^{1/2}}{\pi^{1/4}} e^{-\alpha^2 x^2 / 2} \)
 
-### Local Energy Calculation
-The **local energy** is defined as:
+Hydrogen Atom Trial Function: Ψ(r) = α r e^(-α r)
 
-\[ E_{\text{local}}(r) = \frac{H\Psi(r)}{\Psi(r)} \]
+Quantum Harmonic Oscillator Trial Function: Ψ(x) = α^(1/2) / π^(1/4) e^(-α^2 x^2 / 2)
 
-Where \( H \) is the Hamiltonian operator. For the hydrogen atom:
+Local Energy Calculation
 
-\[ E_{\text{local}}(r) = -\frac{1}{r} - \frac{\alpha}{2} \left( \alpha - \frac{2}{r} \right) \]
+The local energy is defined as:
+
+E_local(r) = (HΨ(r)) / Ψ(r)
+
+Where H is the Hamiltonian operator. For the hydrogen atom:
+
+E_local(r) = -1/r - (α/2) * (α - (2/r))
 
 For the Quantum Harmonic Oscillator:
 
-\[ E_{\text{local}}(x) = \alpha^2 + x^2(1 - \alpha^4) \]
+E_local(x) = α^2 + x^2(1 - α^4)
 
-Minimizing the mean local energy leads to the optimal parameter \( \alpha \) that best approximates the true ground state energy.
-
+Minimizing the mean local energy leads to the optimal parameter α that best approximates the true ground state energy.
 ---
 
 ## Sample Plot

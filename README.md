@@ -83,8 +83,8 @@ def psi_analytic(r, alpha):
 To run the code, follow these steps:
 1. Clone the repository:
 ```bash
-git clone <repository-link>
-cd <repository-folder>
+git clone https://github.com/SuvamT0071/VMC.git
+cd VMC
 ```
 
 2. Run the Jupyter Notebook or Python script:

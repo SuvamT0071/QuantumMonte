@@ -143,10 +143,12 @@ plt.ylabel(r"$\Psi(r)$")
 plt.grid(True)
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/0a0fbca7-b85c-408c-bcf0-e715bf5f1e51)
-![image](https://github.com/user-attachments/assets/1e28196b-cd69-4483-abb7-036507e275fb)
-![image](https://github.com/user-attachments/assets/ae149eb5-9589-49d0-a70d-aa80eebbbfef)
-![image](https://github.com/user-attachments/assets/1d6f68f1-7f1d-4905-bc89-cfa2eda4d3c0)
+
+![image](https://github.com/user-attachments/assets/83e4ab58-614f-4cc5-98e2-551d218fb6c1)
+![image](https://github.com/user-attachments/assets/017d20e4-0bee-44fc-8c7b-dc93c35c1b14)
+![image](https://github.com/user-attachments/assets/04a39937-6028-4d5c-9d2d-e37b40ea2168)
+![image](https://github.com/user-attachments/assets/00982c05-4ab1-4896-adaf-6dc6742e751f)
+
 
 ---
 

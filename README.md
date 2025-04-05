@@ -95,6 +95,8 @@ cd VMC
 2. Run the Jupyter Notebook or Python script:
 ```bash
 jupyter notebook "QMC QHO.ipynb"
+jupyter notebook "QMC HYD.ipynb"
+jupyter notebook "QMC HEL.ipynb"
 ```
 
 3. Use the provided functions to test wavefunctions, visualize results, or optimize alpha.
@@ -153,6 +155,7 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/017d20e4-0bee-44fc-8c7b-dc93c35c1b14)
 ![image](https://github.com/user-attachments/assets/04a39937-6028-4d5c-9d2d-e37b40ea2168)
 ![image](https://github.com/user-attachments/assets/00982c05-4ab1-4896-adaf-6dc6742e751f)
+![image](https://github.com/user-attachments/assets/328b5d98-9ff9-48cc-9dd5-b36619b7dd02)
 
 
 ---

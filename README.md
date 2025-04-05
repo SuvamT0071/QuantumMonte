@@ -157,7 +157,7 @@ plt.show()
 
 ![image](https://github.com/user-attachments/assets/83e4ab58-614f-4cc5-98e2-551d218fb6c1)
 ![image](https://github.com/user-attachments/assets/017d20e4-0bee-44fc-8c7b-dc93c35c1b14)
-![image](https://github.com/user-attachments/assets/04a39937-6028-4d5c-9d2d-e37b40ea2168)
+![image](https://github.com/user-attachments/assets/f2cc58ee-6281-4095-89eb-dd981b7cb7a1)
 ![image](https://github.com/user-attachments/assets/00982c05-4ab1-4896-adaf-6dc6742e751f)
 ![image](https://github.com/user-attachments/assets/328b5d98-9ff9-48cc-9dd5-b36619b7dd02)
 

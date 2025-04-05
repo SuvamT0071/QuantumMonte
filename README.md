@@ -26,14 +26,19 @@ pip install numpy tqdm
 ## Code Structure
 
 - **`Hyd_GS()`** : Defines the trial wavefunction for the ground state of the Hydrogen atom.  
-- **`Hyd_GSPDF()`** : Computes the probability density function (PDF) for the wavefunction.  
+- **`Hyd_GSPDF()`** : Computes the probability density function (PDF) for the wavefunction of Hydrogen atom.  
 - **`Hyd_local()`** : Calculates the local energy of the Hydrogen atom's wavefunction.  
-- **`Hyd_VMC()`** : Performs Variational Monte Carlo sweeps to sample positions and calculate energy.  
+- **`Hyd_VMC()`** : Performs Variational Monte Carlo sweeps to sample positions and calculate energy for Hydrogen atom.  
 - **`Hyd_alpha_opt()`** : Optimizes the variational parameter (alpha) for minimum energy.  
 - **`psi_analytic()`** : Defines the exact analytic solution for the Hydrogen atom's ground state.  
 - **`QHO_GS()`** : Defines the trial wavefunction for the Quantum Harmonic Oscillator.  
 - **`QHO_GSPDF()`** : Computes the PDF for the QHO wavefunction.  
-- **`QHO_local()`** : Calculates the local energy of the QHO wavefunction.  
+- **`QHO_local()`** : Calculates the local energy of the QHO wavefunction.
+- **`Helium_GS`**: Defines the trial wavefunction for the ground state of the Helium atom
+- **`He_GSPDF`**:  Computes the probability density function (PDF) for the wavefunction for the Helium atom. 
+- **`He_loc_en`**: Calculates the local energy of the Helium atom's wavefunction.
+- **`Helium_VMC`**: Performs Variational Monte Carlo sweeps to sample positions and calculate energy for Helium atom
+- **`Helium_alpha_opt`**: Optimizes the variational parameter (alpha) for minimum energy.  
 
 ---
 

@@ -6,10 +6,13 @@ This project implements a **Variational Monte Carlo (VMC)** simulation for the *
 
 ## Features
 ✅ Variational Monte Carlo (VMC) implementation for the Hydrogen atom and QHO  
+
 ✅ Analytic solution for the Hydrogen atom's ground state wavefunction and QHO wavefunction  
+
 ✅ Numerical optimization of the variational parameter 
 
 ✅ Efficient Monte Carlo sampling with controlled step size 
+
 ✅ Stable PDF calculation with improved numerical stability 
 
 ---

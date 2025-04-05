@@ -1,4 +1,4 @@
-# Quantum Monte Carlo for Hydrogen Atom and Quantum Harmonic Oscillator
+# Quantum Monte Carlo for Hydrogen Atom, Helium atom and Quantum Harmonic Oscillator
 
 This project implements a **Variational Monte Carlo (VMC)** simulation for the **Hydrogen atom's ground state wavefunction** and the **Quantum Harmonic Oscillator (QHO)** using Python. It includes functions for defining the trial wavefunction, probability density function (PDF), local energy calculation, and Monte Carlo sampling to optimize the variational parameter (alpha).
 

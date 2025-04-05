@@ -215,3 +215,148 @@ def Hyd_alpha_opt(alpha_list, r, step, samples=10000):
     optimal_alpha = alpha_list[np.argmin(saved_energies)]
 
     return saved_energies, optimal_alpha
+
+def Helium_GS(r, alpha=2):
+    """
+    This function defines the ground state trial
+    wavefunction for Helium atom
+    
+    Parameters:
+    - r: Takes in a 2X3 matrix for position of the 2 electrons
+    - alpha: Optimizing parameter (Default = 2)
+    
+    Returns: 
+    The trial wavefunction for the Helium atom
+    """
+    r_comb = 0.0
+    for i in range(r.shape[0]):
+        r_electron = np.linalg.norm(r[i])
+        r_comb += r_electron
+    return np.exp(-alpha * r_comb)
+
+def He_GSPDF(r, alpha=2):
+    """
+    This function defines the ground state trial
+    Probability density function for Helium atom
+    
+    Parameters:
+    - r: Takes in a 2X3 matrix for position of the 2 electrons
+    - alpha: Optimizing parameter (Default = 2)
+    
+    Returns: 
+    The trial PDF for the Helium atom
+    """
+    wave_func = Helium_GS(r, alpha)
+    return np.abs(wave_func)**2
+
+def He_loc_en(r, alpha=2):
+    """
+    This function defines the ground state Local energy
+    for Helium atom
+    
+    Parameters:
+    - r: Takes in a 2X3 matrix for position of the 2 electrons
+    - alpha: Optimizing parameter (Default = 2)
+    
+    Returns: 
+    The Local energy for the Helium atom
+    """
+    GS_zero = Helium_GS(r, alpha)
+    step = 1e-5
+    KE = 0.0
+    
+    #Performing central difference method for calculation of laplacian
+    for i in range(r.shape[0]):
+        for j in range(r.shape[1]):
+            #forward jump
+            r_plus = np.copy(r)
+            r_plus[i][j] += step
+            GS_plus = Helium_GS(r_plus, alpha)
+            #backward jump
+            r_minus = np.copy(r)
+            r_minus[i][j] -= step
+            GS_minus = Helium_GS(r_minus, alpha)
+
+            KE += (GS_plus + GS_minus - 2 * GS_zero) / step**2
+
+    kinetic = -0.5 * KE / GS_zero
+
+    #Accounting for the electron-nucleus interaction
+    PE1 = 0.0
+    for i in range(r.shape[0]):
+        r_electron = np.linalg.norm(r[i])
+        PE1 += -2.0 / r_electron
+
+    #Accounting for the electron-electron repulsion
+    r12 = np.linalg.norm(r[0] - r[1])
+    if r12 != 0:
+        PE2 = 1/r12
+    else:
+        PE2 = 0
+
+    potential = PE1 + PE2
+    local_energy = kinetic + potential
+    return local_energy
+
+def Helium_VMC(r, step, samples=10000, alpha=2):
+    """
+    This function performs Variational Monte Carlo
+    method for Helium atom
+    
+    Parameters:
+    - r: Takes in a 2X3 matrix for position of the 2 electrons
+    - step: step size for the movement of MH samples
+    - samples: enter the number of VMC sweeps you would like to perform
+               (By default: 10000)
+    - alpha: Optimizing parameter (Default = 2)
+    
+    Returns: 
+    The saved positions and saved energies respectively
+    """
+    position_saved = []
+    energy_saved = []
+
+    for n in range(samples):
+        q = np.random.rand(r.shape[0], r.shape[1])
+        r_new = r + step * (q - 0.5) #for symmetry purpose
+        P_old = He_GSPDF(r, alpha)
+        P_new = He_GSPDF(r_new, alpha)
+        ratio = P_new / (P_old + 1e-10)
+
+        s = np.random.rand()
+        if ratio > s:
+            r = r_new
+
+        position_saved.append(r.copy())
+        energy_saved.append(He_loc_en(r, alpha))
+
+    return position_saved, energy_saved
+
+def Helium_alpha_opt(alpha_list, r, step, samples=10000):
+    """
+    This function optimizes alpha by performing 
+    Variational Monte Carlo method on Helium atom
+    
+    Parameters:
+    - alpha_list: Takes in a list of alpha values for which VMC will be performed
+    - r: Takes in a 2X3 matrix for position of the 2 electrons
+    - step: step size for the movement of MH samples
+    - samples: enter the number of VMC sweeps you would like to perform
+               (By default: 10000)
+    
+    Returns: 
+    The saved positions and saved energies respectively
+    """
+    saved_energies = []
+    variance = []
+    mean_energies = []
+
+    for a in tqdm(alpha_list, unit='alpha', desc='Optimizing alpha'):
+        _, energies = Helium_VMC(r, step, samples, a)
+        mean_e = np.mean(energies)
+        saved_energies.append(mean_e)
+        variance.append(np.var(energies))
+        mean_energies.append(mean_e)
+
+    optimal_alpha = alpha_list[np.argmin(saved_energies)]
+    return saved_energies, optimal_alpha, variance, mean_energies

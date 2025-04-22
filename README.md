@@ -15,6 +15,8 @@ This project implements a **Variational Monte Carlo (VMC)** simulation for the *
 
 ✅ Stable PDF calculation with improved numerical stability 
 
+✅ Obtain Helium atom's ground state energy level with or without Jackstrow-Modified wavefunction
+
 ---
 
 ## Installation

@@ -1,21 +1,21 @@
-# Quantum Monte Carlo for Hydrogen Atom, Helium atom and Quantum Harmonic Oscillator
+# Quantum Monte Carlo for Hydrogen Atom, 2 electron atomic systems and Quantum Harmonic Oscillator
 
-This project implements a **Variational Monte Carlo (VMC)** simulation for the **Hydrogen atom's ground state wavefunction, Helium atom's ground state wavefunction** and the **Quantum Harmonic Oscillator (QHO)** using Python. It includes functions for defining the trial wavefunction, probability density function (PDF), local energy calculation, and Monte Carlo sampling to optimize the variational parameter (alpha).
+This project implements a **Variational Monte Carlo (VMC)** simulation for the **Hydrogen atom's ground state wavefunction, Helium atom's ground state wavefunction, Li2 and Be3 ions** and the **Quantum Harmonic Oscillator (QHO)** using Python. It includes functions for defining the trial wavefunction, probability density function (PDF), local energy calculation, and Monte Carlo sampling to optimize the variational parameter (alpha).
 
 ---
 
 ## Features
 ✅ Variational Monte Carlo (VMC) implementation for the Hydrogen atom, Helium atom and QHO  
 
-✅ Analytic solution for the Hydrogen and Helium atom's ground state wavefunction and QHO wavefunction  
+✅ Analytic solution for the Hydrogen and 2 electron systems ground state wavefunction and QHO wavefunction  
 
-✅ Numerical optimization of the variational parameter 
+✅ Numerical optimization of the variational parameter(s) 
 
 ✅ Efficient Monte Carlo sampling with controlled step size 
 
 ✅ Stable PDF calculation with improved numerical stability 
 
-✅ Obtain Helium atom's ground state energy level with or without Jackstrow-Modified wavefunction
+✅ Obtain 2 electron system atom's ground state energy level with or without Jackstrow-Modified wavefunction
 
 ---
 

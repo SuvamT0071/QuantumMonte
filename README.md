@@ -1,6 +1,6 @@
-# Variational Monte Carlo (VMC) for Atomic and Molecular Systems
+# Variational Monte Carlo (VMC) for Quantum mechanical systems and Atomic and Molecular Systems
 
-This project implements Variational Monte Carlo (VMC) simulations for various quantum systems, including the Hydrogen atom, Helium atom, Hydrogen molecule (H₂), LiH, BeH₂, and the Quantum Harmonic Oscillator (QHO). It provides tools for defining trial wavefunctions, computing energies, optimizing variational parameters, and visualizing results.
+This project implements Variational Monte Carlo (VMC) simulations for various quantum systems, including the Hydrogen atom, Helium atom, Hydrogen molecule (H₂), Li+, Be2+, and the Quantum Harmonic Oscillator (QHO). It provides tools for defining trial wavefunctions, computing energies, optimizing variational parameters, and visualizing results.
 
 ## Features
 
@@ -8,8 +8,10 @@ This project implements Variational Monte Carlo (VMC) simulations for various qu
 
   * Hydrogen atom (ground state)
   * Helium atom (ground state)
+  * Li+ and Be2+ ion ground state calculations
   * Hydrogen molecule (H₂) with bonding and anti-bonding wavefunctions
   * Quantum Harmonic Oscillator (QHO)
+    
 * **Trial Wavefunctions:** User-defined trial wavefunctions with adjustable variational parameters.
 * **Analytical Solutions:** Exact analytical solutions for the Hydrogen atom's ground state and the QHO wavefunction for comparison.
 * **Jastrow Factor:** Includes a Jastrow correlation factor for the H₂ trial wavefunction to account for electron-electron repulsion.
@@ -29,7 +31,7 @@ pip install matplotlib numpy tqdm numba plotly
 Clone the repository:
 
 ```bash
-git clone https://github.com/SuvamT0071/VMC.git
+git clone https://github.com/SuvamT0071/QuantumMonte.git
 cd VMC
 ```
 
@@ -39,11 +41,11 @@ The project is organized into separate files for different systems and functiona
 
 ### Single-Atom Systems (e.g., Hydrogen, Helium, QHO)
 
-* **Trial Wavefunctions:** Define the ground state wavefunctions (e.g., `Hyd_GS`, `Helium_GS`, `QHO_GS`).
-* **Probability Density:** Calculate the wavefunction probability density (e.g., `Hyd_GSPDF`, `He_GSPDF`, `QHO_GSPDF`).
-* **Local Energy:** Compute the local energy (e.g., `Hyd_local`, `He_loc_en`, `QHO_local`).
-* **VMC Simulations:** Perform VMC sweeps to sample configurations and estimate energies (e.g., `Hyd_VMC`, `Helium_VMC`).
-* **Optimization:** Optimize variational parameters (e.g., `Hyd_alpha_opt`, `Helium_alpha_opt`).
+* **Trial Wavefunctions:** Define the ground state wavefunctions (e.g., `Hyd_GS`, `Helium_GS`, `QHO_GS`, `lightatoms_GS`).
+* **Probability Density:** Calculate the wavefunction probability density (e.g., `Hyd_GSPDF`, `He_GSPDF`, `QHO_GSPDF`, `lightatoms_GSPDF`).
+* **Local Energy:** Compute the local energy (e.g., `Hyd_local`, `He_loc_en`, `QHO_local`, `light_loc_en`).
+* **VMC Simulations:** Perform VMC sweeps to sample configurations and estimate energies (e.g., `Hyd_VMC`, `Helium_VMC`,`lightatoms_VMC`).
+* **Optimization:** Optimize variational parameters (e.g., `Hyd_alpha_opt`, `Helium_alpha_opt`, `lightatoms_alpha_opt`, `lightatoms_beta_opt`).
 
 ### Molecular Systems (e.g., H₂)
 
@@ -75,10 +77,12 @@ jupyter notebook QMC_H2_matplotlib.ipynb
 * **Multiple Starting Points:** Run optimizations from different starting points to avoid local minima.
 * **Increased Sample Size:** Use more VMC steps for reduced statistical noise.
 
+
 ## License
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as you see fit.
-
 ---
+## Credits:
+This project was made by Suvam Tripathy, MSc Physics, IIT Madras as a part of a mini-project.
 
 For any questions or contributions, feel free to reach out or submit a pull request. Happy coding!

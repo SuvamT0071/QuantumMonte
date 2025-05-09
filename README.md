@@ -1,178 +1,84 @@
-# Quantum Monte Carlo for Hydrogen Atom, 2 electron atomic systems and Quantum Harmonic Oscillator
+# Variational Monte Carlo (VMC) for Atomic and Molecular Systems
 
-This project implements a **Variational Monte Carlo (VMC)** simulation for the **Hydrogen atom's ground state wavefunction, Helium atom's ground state wavefunction, Li2 and Be3 ions** and the **Quantum Harmonic Oscillator (QHO)** using Python. It includes functions for defining the trial wavefunction, probability density function (PDF), local energy calculation, and Monte Carlo sampling to optimize the variational parameter (alpha).
-
----
+This project implements Variational Monte Carlo (VMC) simulations for various quantum systems, including the Hydrogen atom, Helium atom, Hydrogen molecule (H₂), LiH, BeH₂, and the Quantum Harmonic Oscillator (QHO). It provides tools for defining trial wavefunctions, computing energies, optimizing variational parameters, and visualizing results.
 
 ## Features
-✅ Variational Monte Carlo (VMC) implementation for the Hydrogen atom, Helium atom and QHO  
 
-✅ Analytic solution for the Hydrogen and 2 electron systems ground state wavefunction and QHO wavefunction  
+* **VMC Implementations:**
 
-✅ Numerical optimization of the variational parameter(s) 
-
-✅ Efficient Monte Carlo sampling with controlled step size 
-
-✅ Stable PDF calculation with improved numerical stability 
-
-✅ Obtain 2 electron system atom's ground state energy level with or without Jackstrow-Modified wavefunction
-
----
+  * Hydrogen atom (ground state)
+  * Helium atom (ground state)
+  * Hydrogen molecule (H₂) with bonding and anti-bonding wavefunctions
+  * Quantum Harmonic Oscillator (QHO)
+* **Trial Wavefunctions:** User-defined trial wavefunctions with adjustable variational parameters.
+* **Analytical Solutions:** Exact analytical solutions for the Hydrogen atom's ground state and the QHO wavefunction for comparison.
+* **Jastrow Factor:** Includes a Jastrow correlation factor for the H₂ trial wavefunction to account for electron-electron repulsion.
+* **Numerical Optimization:** Optimizes variational parameters (e.g., alpha, beta) to minimize energy.
+* **Local Energy Calculation:** Implements a finite difference method for calculating the local energy.
+* **Metropolis Sampling:** Efficient Monte Carlo sampling using the Metropolis algorithm.
+* **Data Analysis & Visualization:** Generates interactive plots using Plotly for better result interpretation.
 
 ## Installation
 
-To run this project, ensure you have the following libraries installed:
+Ensure the required libraries are installed:
 
 ```bash
-pip install numpy tqdm
+pip install matplotlib numpy tqdm numba plotly
 ```
 
----
+Clone the repository:
 
-## Code Structure
-
-- **`Hyd_GS()`** : Defines the trial wavefunction for the ground state of the Hydrogen atom.  
-- **`Hyd_GSPDF()`** : Computes the probability density function (PDF) for the wavefunction of Hydrogen atom.  
-- **`Hyd_local()`** : Calculates the local energy of the Hydrogen atom's wavefunction.  
-- **`Hyd_VMC()`** : Performs Variational Monte Carlo sweeps to sample positions and calculate energy for Hydrogen atom.  
-- **`Hyd_alpha_opt()`** : Optimizes the variational parameter (alpha) for minimum energy.  
-- **`psi_analytic()`** : Defines the exact analytic solution for the Hydrogen atom's ground state.  
-- **`QHO_GS()`** : Defines the trial wavefunction for the Quantum Harmonic Oscillator.  
-- **`QHO_GSPDF()`** : Computes the PDF for the QHO wavefunction.  
-- **`QHO_local()`** : Calculates the local energy of the QHO wavefunction.
-- **`Helium_GS`**: Defines the trial wavefunction for the ground state of the Helium atom
-- **`He_GSPDF`**:  Computes the probability density function (PDF) for the wavefunction for the Helium atom. 
-- **`He_loc_en`**: Calculates the local energy of the Helium atom's wavefunction.
-- **`Helium_VMC`**: Performs Variational Monte Carlo sweeps to sample positions and calculate energy for Helium atom
-- **`Helium_alpha_opt`**: Optimizes the variational parameter (alpha) for minimum energy.  
-
----
-
-## Usage
-
-### Example Code
-```python
-import numpy as np
-from tqdm import tqdm
-
-def Hyd_GS(r, alpha=2):
-    return alpha * r * np.exp(-alpha * r)
-
-def Hyd_GSPDF(r, alpha=1):
-    wave_func = Hyd_GS(r, alpha)
-    return np.abs(wave_func)**2
-
-def Hyd_local(r, alpha=2):
-    if r <= 0:
-        raise ValueError("Position value 'r' must be greater than zero.")
-    return -1/r - (alpha/2) * (alpha - (2/r))
-
-def Hyd_VMC(r, step, samples=10000, alpha=2):
-    position_saved = []
-    energy_saved = []
-    for n in range(samples):
-        r_new = r + np.random.uniform(-step, step)
-        if r_new <= 0:
-            continue
-        P_old = Hyd_GSPDF(r, alpha)
-        P_new = Hyd_GSPDF(r_new, alpha)
-        ratio = P_new / (P_old + 1e-10)
-        s = np.random.rand()
-        if ratio > s:
-            r = r_new
-        position_saved.append(r)
-        energy_saved.append(Hyd_local(r, alpha))
-    return position_saved, energy_saved
-
-def psi_analytic(r, alpha):
-    return (alpha**(3/2)) * np.exp(-alpha * r) / np.sqrt(np.pi)
-```
-
----
-
-### Running the Code
-To run the code, follow these steps:
-1. Clone the repository:
 ```bash
 git clone https://github.com/SuvamT0071/VMC.git
 cd VMC
 ```
 
-2. Run the Jupyter Notebook or Python script:
+## Code Structure
+
+The project is organized into separate files for different systems and functionalities:
+
+### Single-Atom Systems (e.g., Hydrogen, Helium, QHO)
+
+* **Trial Wavefunctions:** Define the ground state wavefunctions (e.g., `Hyd_GS`, `Helium_GS`, `QHO_GS`).
+* **Probability Density:** Calculate the wavefunction probability density (e.g., `Hyd_GSPDF`, `He_GSPDF`, `QHO_GSPDF`).
+* **Local Energy:** Compute the local energy (e.g., `Hyd_local`, `He_loc_en`, `QHO_local`).
+* **VMC Simulations:** Perform VMC sweeps to sample configurations and estimate energies (e.g., `Hyd_VMC`, `Helium_VMC`).
+* **Optimization:** Optimize variational parameters (e.g., `Hyd_alpha_opt`, `Helium_alpha_opt`).
+
+### Molecular Systems (e.g., H₂)
+
+* **Proton Positioning:** Define proton positions for H₂ (`proton_points`).
+* **Single-Electron Wavefunction:** Calculate single-electron wavefunctions (`single_electron_wavefunction`).
+* **Jastrow Factor:** Implement the Jastrow correlation factor (`calc_Jastrow`).
+* **Total Wavefunction:** Construct the full molecular wavefunction (`total_wavefunction`).
+* **VMC Simulations:** Run VMC for H₂, including Jastrow factors and bonding/anti-bonding states (`H2_VMC`).
+* **Parameter Optimization:** Optimize alpha and beta parameters for minimal energy (`alpha_opt`, `beta_opt`).
+
+## Usage
+
+To run the notebooks, open them in Jupyter:
+
 ```bash
-jupyter notebook "QMC QHO.ipynb"
-jupyter notebook "QMC HYD.ipynb"
-jupyter notebook "QMC HEL.ipynb"
+jupyter notebook QMC_HYD.ipynb
+jupyter notebook QMC_H2_matplotlib.ipynb
 ```
 
-3. Use the provided functions to test wavefunctions, visualize results, or optimize alpha.
+### Key Considerations for H₂
 
----
+* **Bonding vs. Anti-Bonding:** Use the `sign` parameter in functions like `single_electron_wavefunction` to select bonding (`sign=1`) or anti-bonding (`sign=-1`) states.
+* **Optimization Order:** Alpha is typically optimized before beta, but simultaneous optimization can yield better results.
 
-## Mathematical Background
+## Recommendations for Improvement
 
-**Choosing a Trial Wavefunction**
-
-In the Variational Monte Carlo method, we approximate the ground state wavefunction with a trial function containing a free parameter (alpha). For accurate energy estimation, the chosen trial function should capture key properties of the system such as symmetry, boundary conditions, and decay behavior.
-
-**For example:**
-
-**Hydrogen Atom Trial Function:** Ψ(r) = α r e^(-α r)
-
-**Quantum Harmonic Oscillator Trial Function:** Ψ(x) = α^(1/2) / π^(1/4) e^(-α^2 x^2 / 2)
-
-**Helium Atom trial wavefunction:** Ψ(r) = e^(-α (|r1|+|r2|))
-
-**Local Energy Calculation**
-
-The local energy is defined as:
-
-E_local(r) = (HΨ(r)) / Ψ(r)
-
-Where H is the Hamiltonian operator. 
-
-**For the hydrogen atom:**
-
-E_local(r) = -1/r - (α/2) * (α - (2/r))
-
-**For the Quantum Harmonic Oscillator:**
-
-E_local(x) = α^2 + x^2(1 - α^4)
-
-Minimizing the mean local energy leads to the optimal parameter α that best approximates the true ground state energy.
----
-
-## Sample Plot
-To visualize the results, you can plot the optimized wavefunction and compare it with the analytic solution.
-
-```python
-import matplotlib.pyplot as plt
-
-x_vals = np.linspace(0, 5, 500)
-optimal_alpha = 1.5  # Example optimized value
-plt.plot(x_vals, psi_analytic(x_vals, optimal_alpha), label="Analytic Solution")
-plt.legend()
-plt.title("Hydrogen Atom Ground State Wavefunction")
-plt.xlabel("r")
-plt.ylabel(r"$\Psi(r)$")
-plt.grid(True)
-plt.show()
-```
-
-![image](https://github.com/user-attachments/assets/83e4ab58-614f-4cc5-98e2-551d218fb6c1)
-![image](https://github.com/user-attachments/assets/017d20e4-0bee-44fc-8c7b-dc93c35c1b14)
-![image](https://github.com/user-attachments/assets/f2cc58ee-6281-4095-89eb-dd981b7cb7a1)
-![image](https://github.com/user-attachments/assets/00982c05-4ab1-4896-adaf-6dc6742e751f)
-![image](https://github.com/user-attachments/assets/328b5d98-9ff9-48cc-9dd5-b36619b7dd02)
-
-
----
-
-## This was made by:
-- **Suvam Tripathy, A MSc Physics student at IIT Madras as a part of a mini project. (2023-2025)**
-
----
+* **Simultaneous Alpha and Beta Optimization:** Use `scipy.optimize.minimize` for joint parameter optimization.
+* **Advanced Wavefunctions:** Explore more complex functional forms for improved accuracy.
+* **Multiple Starting Points:** Run optimizations from different starting points to avoid local minima.
+* **Increased Sample Size:** Use more VMC steps for reduced statistical noise.
 
 ## License
-This project is licensed under the MIT License. Feel free to use, modify, and distribute the code.
 
+This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as you see fit.
+
+---
+
+For any questions or contributions, feel free to reach out or submit a pull request. Happy coding!
